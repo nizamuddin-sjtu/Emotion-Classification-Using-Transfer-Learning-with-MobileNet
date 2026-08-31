@@ -1,47 +1,84 @@
-# Emotion-Classification-Using-Transfer-Learning-with-MobileNet
-This repository provides an implementation of an emotion classification model using MobileNet as the backbone network. The model is designed to classify images of emotions using a pre-trained MobileNet model, which is fine-tuned on a custom grayscale emotion dataset.
-Overview
+<h1 align="center">Emotion Classification with MobileNet Transfer Learning</h1>
 
-The project includes:
+<p align="center">
+  <a href="emtionRecognition.py"><img src="https://img.shields.io/badge/Project-emtionRecognition.py-555555.svg" alt="Project entry file"></a>
+  <a href="https://scholar.google.com/citations?user=bvyKhaEAAAAJ&hl=en"><img src="https://img.shields.io/badge/Publications-Google_Scholar-4285F4.svg" alt="Google Scholar"></a>
+  <a href="https://www.kaggle.com/nizamuddinmaitlo"><img src="https://img.shields.io/badge/Profile-Kaggle-20BEFF.svg" alt="Kaggle profile"></a>
+</p>
 
-    Data Preprocessing: Conversion of grayscale images to RGB, resizing, and augmentation using TensorFlow's ImageDataGenerator.
-    Model Architecture: Utilization of MobileNet as the feature extractor with additional dense layers for emotion classification.
-    Training and Evaluation: Training the model with data augmentation, evaluating its performance, and visualizing results.
+<p align="center"><b>Repository maintained by Nizamuddin Maitlo</b></p>
 
-Features
+<p align="center">Folder-based grayscale emotion classification using an ImageNet-initialized MobileNet backbone.</p>
 
-    Data Augmentation: Includes techniques like horizontal flipping, rotation, width and height shifts, and zooming to enhance model generalization.
-    Pre-trained MobileNet: Leverages a MobileNet model pre-trained on ImageNet for feature extraction.
-    Grayscale to RGB Conversion: Converts grayscale images to RGB format for compatibility with MobileNet.
-    Visualization: Plots training history and visualizes sample images to inspect the model's performance.
+## 🔥 Overview
 
-Code Breakdown
+This repository fine-tunes a compact classifier on top of a frozen MobileNet feature extractor. Grayscale emotion images are resized, expanded to three channels, augmented during training, and evaluated on a separate test directory.
 
-    Data Preparation:
-        Uses ImageDataGenerator to preprocess and augment images from specified directories.
-        Converts grayscale images to RGB format for compatibility with MobileNet.
+## ✨ Features
 
-    Model Creation:
-        Builds a custom model based on MobileNet with additional dense layers.
-        Freezes the pre-trained MobileNet layers to retain learned features.
+- Grayscale-to-RGB conversion for MobileNet input.
+- ImageDataGenerator augmentation and validation split.
+- ImageNet-initialized MobileNet feature extractor.
+- Training curves, test accuracy, and sample visualization.
 
-    Training:
-        Trains the model with augmented training data and validates on a separate validation set.
-        Provides plots for accuracy and loss over epochs.
+## 🧪 Method and protocol
 
-    Evaluation:
-        Evaluates model performance on test data and prints test accuracy.
+- Training images must follow a class-folder hierarchy under `train`.
+- Test images must use the same class folders under `test`.
+- Twenty percent of the training folder is reserved for validation.
+- Edit `train_dir` and `test_dir` in `emtionRecognition.py` before running.
 
-    Visualization:
-        Displays sample images from the validation set along with their corresponding labels.
+## 📁 Repository contents
 
-How to Use
+| File | Purpose |
+|---|---|
+| `emtionRecognition.py` | Data loading, MobileNet model, training, evaluation, and plots |
 
-    Prepare Dataset: Place your grayscale images into train and test directories in the structure expected by flow_from_directory.
-    Run the Script: Execute the script to preprocess data, train the model, and visualize results.
+## 🛠️ Setup
 
-Requirements
+Install the dependencies:
 
-    TensorFlow 2.x
-    NumPy
-    Matplotlib
+~~~bash
+python -m pip install tensorflow numpy matplotlib
+~~~
+
+## 📦 Data and inputs
+
+| Resource | Purpose | Availability |
+|---|---|---|
+| Folder-based grayscale emotion dataset | Training, validation, and held-out test images | User-provided dataset |
+
+The image dataset is not stored in this repository, and no public dataset URL is currently associated with the script.
+
+## 🚀 Running the project
+
+Update the dataset paths in the script, then run:
+
+~~~bash
+python emtionRecognition.py
+~~~
+
+## ♻️ Reproducibility
+
+- Record the Python and library versions used for each run.
+- Keep preprocessing, splits, thresholds, and random seeds fixed when comparing results.
+- Do not commit private input data, generated model weights, or machine-specific paths.
+- Revalidate results when the dataset, sensor, operating environment, or dependency versions change.
+
+## 📚 Publications
+
+No paper-specific DOI is currently associated with this repository. This section is intentionally kept separate from related publications to avoid implying a publication-to-code relationship that has not been established.
+
+
+
+## ⚠️ Scope and limitations
+
+The current script contains machine-specific absolute paths and freezes the MobileNet backbone. Results depend on dataset balance, label quality, subject separation, and whether identities or near-duplicate frames cross the splits.
+
+## 📄 License
+
+No standalone license file is currently included in this repository.
+
+## 🤝 Acknowledgements
+
+This project uses open-source Python libraries and the data or inputs described above. We thank the original dataset, framework, and software contributors.
